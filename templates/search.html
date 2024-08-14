@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Documentos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 12px;
+            padding: 15px;
+            background-color: #13223b; /* Cor de fundo */
+            color: #fff; /* Cor do texto */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha os itens no topo */
+            height: 100vh; /* Altura total da tela */
+        }
+        .container {
+            width: 100%; /* Aumenta a largura do container */
+            max-width: 1100px; /* Aumenta a largura máxima do container */
+            padding: 30px; /* Reduz o padding */
+            background: #ffffff; /* Fundo do container */
+            color: #000; /* Cor do texto dentro do container */
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centraliza o conteúdo dentro do container */
+        }
+        h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: bold; /* Negrito */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            width: 30%; /* Reduz o tamanho da barra de pesquisa */
+            padding: 10px;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            margin: 0 auto; /* Centraliza o campo de pesquisa */
+            display: block;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-right: 10px; /* Espaço entre os botões */
+            font-size: 16px; /* Tamanho da fonte */
+        }
+        .btn-primary {
+            background-color: #007bff; /* Azul */
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Azul escuro */
+        }
+        .btn-secondary {
+            background-color: #dc3545; /* Vermelho */
+        }
+        .btn-secondary:hover {
+            background-color: #c82333; /* Vermelho escuro */
+        }
+        .pretty-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .pretty-table th, .pretty-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .pretty-table th {
+            background-color: #13223b; /* Azul */
+            color: white;
+        }
+        .message {
+            font-size: 16px;
+            color: #000000;
+        }
+        .result-count {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Consulta de Documentos</h1>
+        <form method="POST">
+            <div class="form-group">
+                <input type="text" name="documento" placeholder="Digite o documento" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+        </form>
+        {% if table %}
+            <div class="result-count">Número de resultados: {{ num_results }}</div>
+            {{ table|safe }}
+        {% endif %}
+    </div>
+</body>
+</html>
